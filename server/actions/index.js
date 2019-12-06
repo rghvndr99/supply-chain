@@ -26,14 +26,15 @@ const loginService = async(userid,password)=>{
     return await global.databaseInstance.collection(config.collections.user).find({
 		$and: [{userid:userid},{password:password}]});
 }
-const updateRequest = async(query) => {
-    return await global.databaseInstance.collection(config.collections.requests).updateOne(query);
+const updateRequest = async(reqId, status) => {
+    console.log('michael', reqId, status);
+    return await global.databaseInstance.collection(config.collections.requests).updateOne({reqId:reqId},{$set:{status:status}});
 }
 const getRequest = async(query) => {
     return await global.databaseInstance.collection(config.collections.requests).find(query);
 }
 const deleteRequest = async(query) => {
-    return await global.databaseInstance.collection(config.collections.requests).removeOne(query,true);
+    return await global.databaseInstance.collection(config.collections.requests).deleteOne(query,true);
 }
 const aggregateRequestAndProductsForUser= async(userid,password) =>{
     return await global.databaseInstance.collection(config.collections.user).aggregate([

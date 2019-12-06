@@ -6,7 +6,9 @@ import {productlistingService,
   updateProductservice,
   productPortalListingService,
   removeFromListService,
-  loginService
+  loginService,
+  deleteReq,
+  changeReqStatus
 } from '../services';
 import EditProductTile from "./EditProductTile.js";
 import {
@@ -39,6 +41,9 @@ class Main extends Component {
         this.editProduct = this.editProduct.bind(this);
         this.updateProduct = this.updateProduct.bind(this);
         this.showRequestToggle = this.showRequestToggle.bind(this);
+        this.deleteReq = this.deleteReq.bind(this);
+        this.editReq = this.editReq.bind(this);
+        this.changeStatusReq = this.changeStatusReq.bind(this);
  }
 
  removeFromlist = async(productId) => {
@@ -78,7 +83,7 @@ class Main extends Component {
             loginAssupplier: false,
           });
  }
-
+ 
  productPortalListing = async() => {
 
 const res= await productPortalListingService();
@@ -109,6 +114,7 @@ const res= await productPortalListingService();
 logout = () => {
   this.setState({
     loginDetail: null,
+    showRequests: false,
     productList: []
   });
   userInfo= null;
@@ -125,10 +131,47 @@ showRequestToggle = () => {
     showRequests : !this.state.showRequests
   });
 }
+deleteReq = async(reqId) => {
+ const response = await deleteReq(reqId);
+ const sessionItem = JSON.parse(sessionStorage.getItem('userInfo')) || {};
+ if(response.ok) {
+   let req = sessionItem.requests || [];
+   let filteredReq = req.filter(item => item.reqId !== reqId);
+   this.setState({
+    requestList: filteredReq
+  });
+ }
+ 
+}
+editReq = (reqId) => {
+  console.log('delete is called');
+}
+
+changeStatusReq = async(reqId,status = 'approved') => {
+ const response = await changeReqStatus(reqId, status);
+ const sessionItem = JSON.parse(sessionStorage.getItem('userInfo')) || this.state.requestList;
+ if(response.ok) {
+   let req = sessionItem.requests || [];
+   let filteredReq = req.map(item => {
+     if (item.reqId == reqId) {
+       item.status = status
+     }
+     return item;
+    });
+   this.setState({
+    requestList: filteredReq
+  });
+ }
+}
 
 
   render() {
-    let { productList = [], loginDetail, showLoginDrawer, loginAssupplier, showRequests} = this.state;
+    let { productList = [],
+      requestList = [], 
+      loginDetail, 
+      showLoginDrawer,
+       loginAssupplier, 
+       showRequests} = this.state;
 
     let productTile = productList.map((item, index) => {
         return <Tile 
@@ -157,7 +200,14 @@ showRequestToggle = () => {
             loginAssupplier={loginAssupplier}
            />
           { showRequests &&  
-            <Request />
+
+            <Request 
+            editReq= {this.editReq}
+            changeStatusReq= {this.changeStatusReq}
+            deleteReq= {this.deleteReq}
+            requests = {requestList}
+            userid = {loginDetail} />
+            
           }
           <div className="tile-container">
             { tileMarkup }            

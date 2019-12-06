@@ -197,6 +197,34 @@ app.put('/'+config.api.editProductClt,async(req,res,next)=> {
 		});	
 });
 
+app.delete('/'+config.api.requestClt,(req,res,next)=> {
+	const {reqId = ''} = req.body;
+	deleteRequest({'reqId':reqId}).then((error,response) =>  {
+		if(error) { 
+			res.status(201).send({
+				result: false
+			})
+		}
+		res.status(200).send({
+			result: true
+		})
+	});	
+});
+app.post('/'+config.api.requestClt,(req,res,next)=> {
+	const {reqId = '',status= 'pending'} = req.body;
+	//console.log('req', reqId, status);
+	updateRequest(reqId,status).then((error,response) =>  {
+		if(error) { 
+			res.status(201).send({
+				result: false
+			})
+		}
+		res.status(200).send({
+			result: true
+		})
+	});	
+});
+
 app.get('/',(req,res,next) => {
 	res.send('server is running');
 	next();	

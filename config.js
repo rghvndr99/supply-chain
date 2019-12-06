@@ -13,7 +13,8 @@ const api = {
   product : 'product',
   login : 'login',
   editUserClt: 'edituserClt',
-  editProductClt: 'editProductClt'
+  editProductClt: 'editProductClt',
+  requestClt: 'editRequestClt'
 };
 const collections = {
   user: 'userMap',

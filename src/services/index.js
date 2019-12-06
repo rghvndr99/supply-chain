@@ -56,11 +56,28 @@ const loginService = async(username,password)=> {
         
       }).then((res) => res.json());
 }
+const deleteReq =  async(reqId) => {
+  return await fetch(config.serverConnectURL+config.api.requestClt, {
+    method: 'delete',
+    headers,
+    body: JSON.stringify({'reqId': reqId})
+  });
+}
+
+const changeReqStatus = async(reqId) => {
+  return await fetch(config.serverConnectURL+config.api.requestClt, {
+    method: 'post',
+    headers,
+    body: JSON.stringify({'reqId': reqId,'status':'approved'})
+  });
+}
 
 export {
     productlistingService,
     updateProductservice,
     productPortalListingService,
     removeFromListService,
-    loginService
+    loginService,
+    deleteReq,
+    changeReqStatus
 }
