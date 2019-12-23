@@ -1,17 +1,7 @@
 import React from 'react';
 
-class Image extends React.Component {
-	constructor (props) {
-		super(props)
-	}
-
-	render() {
-		const {dataSrc,cssClass} = this.props;
-
-		return (
-				<img src={dataSrc} className= {cssClass} />
-			)
-	}
+const Image=(props)=> {
+	return (<img src={props.dataSrc} className= {props.cssClass} />)
 }
 
 export default Image;

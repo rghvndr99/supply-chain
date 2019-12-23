@@ -4,17 +4,11 @@ import UserDetail from "./UserDetail.js";
 import Image from "./Image.js";
 import userlogo from '../image/user-small.png';
 
-
-class Login extends React.Component {
-	constructor (props) {
-		super(props)
-	}
-
-	render() {
-		let userInfo = JSON.parse(sessionStorage.getItem('userInfo')) || {};
+const Login =(props)=>{
+	let userInfo = JSON.parse(sessionStorage.getItem('userInfo')) || {};
 			userInfo = userInfo.userid || '';
 
-        const {showLoginDrawer, loginClick, login,logout, showRequestToggle, productList,productPortalListing} = this.props;
+        const {showLoginDrawer, loginClick, login,logout, showRequestToggle, productList,productPortalListing} = props;
 		return (
 				<React.Fragment>
 					<div className="login-wrapper" onClick={()=>loginClick()}>
@@ -39,7 +33,5 @@ class Login extends React.Component {
                     }                    
 				</React.Fragment>
 			)
-	}
 }
-
 export default Login;

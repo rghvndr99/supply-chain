@@ -3,14 +3,9 @@ import Login from "./Login.js";
 import Image from "./Image.js";
 import logo from '../image/logo.png';
 
+const Header =(props) => {
+	const {login,drawerClick, showRequestToggle, loginAssupplier,logout,productList,showLoginDrawer,productPortalListing} = props;
 
-class Header extends React.Component {
-	constructor (props) {
-		super(props);
-	} 
-
-	render() {
-		const {login,drawerClick, showRequestToggle, loginAssupplier,logout,productList,showLoginDrawer,productPortalListing} = this.props;
 		return (
 				<React.Fragment>
 					<header className="header">
@@ -35,7 +30,7 @@ class Header extends React.Component {
 						
 				</React.Fragment>
 			)
-	}
 }
+
 
 export default Header;
