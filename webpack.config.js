@@ -10,8 +10,6 @@ const htmlplugin=new HtmlWebPackPlugin({
       filename: "index.html"
 });
 
-//const cleanHtml=new CleanWebpackPlugin(["dist"]);
-
 const miniCssExtractPlugin = new MiniCssExtractPlugin({
   filename: "styles/[name].css",
   chunkFilename: "[id].css"
@@ -20,7 +18,6 @@ const miniCssExtractPlugin = new MiniCssExtractPlugin({
 module.exports={
     entry: "./src/index.js",
     output: {
-        //path: path.resolve("public"),
         filename: "js/bundle.js",
         publicPath: "/"
     },

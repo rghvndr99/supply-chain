@@ -47,7 +47,7 @@ class LoginDrawer extends React.Component {
             Login
           </button>
           <FacebookLogin
-            appId="XXXXXXXXXXXXX"
+            appId="992491397779368"
             autoLoad={false}
             fields="name,email,picture"
             onClick={() => {}}
@@ -55,7 +55,7 @@ class LoginDrawer extends React.Component {
             callback={this.props.facebookCallBackhandler}
           />
           <GitHubLogin
-            clientId="YYYYYYYYYYY"
+            clientId="e50cca912fbd01abc61f"
             redirectUri=''
             className= "btn btn-login"
             onSuccess={(res)=>this.props.githubCallBackhandler(res)}

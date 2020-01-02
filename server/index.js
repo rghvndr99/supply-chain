@@ -94,8 +94,8 @@ app.post('/'+config.api.loginFB,async(req,res,next)=>{
 app.post('/'+config.api.loginGH,async(req,res,next)=>{
 	const {access_code=''} = req.body;
 	axios.post('https://github.com/login/oauth/access_token', {    	
-			'client_id': 'e50cca912fbd01abc61f',
-			'client_secret':'f3b75b21deb66f4d7297eea11b30e46275b6cd2c',
+			'client_id': 'e50cca912fbd01abc61f429',
+			'client_secret':'f3b75b21deb66f4d7297eea11b30e46275b6cd2c906',
 			'code':access_code
   	}).then(async(response)=>{
 
