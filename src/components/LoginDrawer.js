@@ -1,4 +1,6 @@
 import React from 'react';
+import GitHubLogin from 'react-github-login';
+import FacebookLogin from 'react-facebook-login';
 import userlogo from '../image/user_logo.png';
 
 
@@ -13,22 +15,55 @@ class LoginDrawer extends React.Component {
 
 	render() {
 		return (
-            <div className="login-drawer">
-                <div className="img-container">
-                    <img src={userlogo} alt="Avatar" className="avatar" />
-                </div>
+      <div className="login-drawer">
+        <div className="img-container">
+          <img src={userlogo} alt="Avatar" className="avatar" />
+        </div>
 
-                  <div className="container">
-                    <label htmlFor="uname"><b>Username</b></label>
-                    <input type="text" ref= {(input) => this.username = input} placeholder="Enter Username" name="uname" required />
+        <div className="container">
+          <label htmlFor="uname">
+            <b>Username</b>
+          </label>
+          <input
+            type="text"
+            ref={input => (this.username = input)}
+            placeholder="Enter Username"
+            name="uname"
+            required
+          />
 
-                    <label htmlFor="psw"><b>Password</b></label>
-                    <input type="password" ref= {(input) => this.password = input} placeholder="Enter Password" name="psw" required />
+          <label htmlFor="psw">
+            <b>Password</b>
+          </label>
+          <input
+            type="password"
+            ref={input => (this.password = input)}
+            placeholder="Enter Password"
+            name="psw"
+            required
+          />
 
-                    <button className="btn btn-login" onClick={this.loginCtrl}>Login</button>                    
-                  </div>
-            </div>
-			)
+          <button className="btn btn-login" onClick={this.loginCtrl}>
+            Login
+          </button>
+          <FacebookLogin
+            appId="992491397779368"
+            autoLoad={false}
+            fields="name,email,picture"
+            onClick={() => {}}
+            cssClass="btn btn-login"
+            callback={this.props.facebookCallBackhandler}
+          />
+          <GitHubLogin
+            clientId="e50cca912fbd01abc61f"
+            redirectUri=''
+            className= "btn btn-login"
+            onSuccess={(res)=>this.props.githubCallBackhandler(res)}
+            onFailure={(error) => {console.log(error)}}
+          />
+        </div>
+      </div>
+    );
 	}
 }
 

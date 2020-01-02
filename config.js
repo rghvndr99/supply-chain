@@ -12,6 +12,8 @@ const salt_rounds = 12;
 const api = {
   product : 'product',
   login : 'login',
+  loginFB : 'loginFB',
+  loginGH : 'loginGH',
   editUserClt: 'edituserClt',
   editProductClt: 'editProductClt',
   requestClt: 'editRequestClt'

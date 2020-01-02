@@ -15,6 +15,7 @@ import {loginService,
 import express from 'express';
 import mongoDB from 'mongodb';
 import bodyParser from 'body-parser';
+import axios from 'axios';
 import { async } from 'q';
 
 const mongoClient = mongoDB.MongoClient;
@@ -59,6 +60,67 @@ app.post('/'+config.api.login,async (req,res,next)=> {
 		next();
 
 	});	
+});
+
+app.post('/'+config.api.loginFB,async(req,res,next)=>{
+	debugger;
+	const {access_token = '',userid=''} = req.body;
+	const fblogin = `https://graph.facebook.com/${userid}?access_token=${access_token}`;
+	axios.get(fblogin).then(async(response)=>{
+
+		/* for testing purpose, hard coding username and password */
+		const response1 = await aggregateRequestAndProductsForUser('tesco2','tesco2');
+
+		response1.toArray((err,result) => {
+			if(err) {
+				res.send({
+					err
+				});
+				return;
+			}
+			res.send({
+				result,			
+			});
+			next();
+	
+		});
+	}).catch((err)=>{
+		res.send({
+			err
+		});
+	});
+});
+
+app.post('/'+config.api.loginGH,async(req,res,next)=>{
+	const {access_code=''} = req.body;
+	axios.post('https://github.com/login/oauth/access_token', {    	
+			'client_id': 'e50cca912fbd01abc61f',
+			'client_secret':'f3b75b21deb66f4d7297eea11b30e46275b6cd2c',
+			'code':access_code
+  	}).then(async(response)=>{
+
+		/* for testing purpose, hard coding username and password */
+		const response1 = await aggregateRequestAndProductsForUser('tesco2','tesco2');
+
+		response1.toArray((err,result) => {
+			if(err) {
+				res.send({
+					err
+				});
+				return;
+			}
+			res.send({
+				result,			
+			});
+			next();
+	
+		});
+	}).catch((err)=>{
+		console.log(err);
+		res.send({
+			err
+		});
+	});
 });
 
 app.get('/'+config.api.product,async(req,res,next)=> {

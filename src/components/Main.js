@@ -1,20 +1,27 @@
 import React, {useState,useEffect } from "react";
+
 import Header from "./Header.js";
 import Tile from "./Tile.js";
 import Request from "./Request.js";
+import EditProductTile from "./EditProductTile.js";
+
+
 import {productlistingService,
   updateProductservice,
   productPortalListingService,
   removeFromListService,
   loginService,
   deleteReq,
-  changeReqStatus
+  changeReqStatus,
+  loginServiceFB,
+  loginServiceGH
 } from '../services';
-import EditProductTile from "./EditProductTile.js";
+
 import {
 	PopupboxManager,
 	PopupboxContainer
   } from 'react-popupbox';
+  
 import "react-popupbox/dist/react-popupbox.css";
 import { async } from "q";
 
@@ -49,20 +56,33 @@ const Main = ()=> {
       });
   }
 
+  const facebookCallBackhandler = async(response) => {
+    const res= await loginServiceFB(response.accessToken,response.userID);
+    afterLogin(res);
+  }
+  const githubCallBackhandler =async(response)=>{
+    const res= await loginServiceGH(response.code);
+    afterLogin(res);
+  }
+
   const login = async( username ='', password ='' ) => {    
     const res = await loginService(username,password);
-      if(res && res.result.length>0) {
-        let product = res.result[0].product.length ? res.result[0].product[0].product : [];
+    afterLogin(res);
+ }
 
-        delete res.result[0].product;
-        sessionStorage.setItem('userInfo',JSON.stringify(res.result[0]));
-        changeState({
-          ...stateObj,
-          loginDetail: res.result[0].userid,
-          productList: product,
-          requestList: res.result[0].requests
-        });   
-      }
+ const afterLogin= (res)=>{
+  if(res && res.result.length>0) {
+    let product = res.result[0].product.length ? res.result[0].product[0].product : [];
+
+    delete res.result[0].product;
+    sessionStorage.setItem('userInfo',JSON.stringify(res.result[0]));
+    changeState({
+      ...stateObj,
+      loginDetail: res.result[0].userid,
+      productList: product,
+      requestList: res.result[0].requests
+    });   
+  }
  }
 
   const logout = () => {
@@ -176,7 +196,7 @@ const Main = ()=> {
     <div>
       <PopupboxContainer />
 
-      <Header
+      <Header 
         login={login}
         logout={logout}
         showRequestToggle={showRequestToggle}
@@ -185,6 +205,8 @@ const Main = ()=> {
         showLoginDrawer={stateObj.showLoginDrawer}
         productPortalListing={productPortalListing}
         loginAssupplier={stateObj.loginAssupplier}
+        facebookCallBackhandler = {facebookCallBackhandler}
+        githubCallBackhandler = {githubCallBackhandler}
       />
 
       {stateObj.showRequests && (

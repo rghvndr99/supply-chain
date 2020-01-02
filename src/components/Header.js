@@ -4,7 +4,17 @@ import Image from "./Image.js";
 import logo from '../image/logo.png';
 
 const Header =(props) => {
-	const {login,drawerClick, showRequestToggle, loginAssupplier,logout,productList,showLoginDrawer,productPortalListing} = props;
+	const {
+		login,
+		drawerClick,
+		 showRequestToggle, 
+		 loginAssupplier,
+		 logout,
+		 productList,
+		 showLoginDrawer,
+		 productPortalListing,
+		 facebookCallBackhandler,
+		 githubCallBackhandler} = props;
 
 		return (
 				<React.Fragment>
@@ -12,18 +22,17 @@ const Header =(props) => {
 						<div className="hedaer-content" onClick={() => productList()}>
 							<Image dataSrc={logo} cssClass="logo"></Image>							
 						</div>
-						{ loginAssupplier &&
-								<h2>Portal items</h2>
-						}
 						<div className="userDrawer">
 							<Login
-							 loginClick={drawerClick} 
-							 showLoginDrawer={showLoginDrawer}
+							  loginClick={drawerClick} 
+							  showLoginDrawer={showLoginDrawer}
 							  login = {login}
 							  logout = {logout}
 							  showRequestToggle = {showRequestToggle}
 							  productList = {productList}
 							  productPortalListing = {productPortalListing}
+							  facebookCallBackhandler= {facebookCallBackhandler}
+							  githubCallBackhandler= {githubCallBackhandler}
 							/>
 						</div>
 					</header>

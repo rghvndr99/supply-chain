@@ -56,6 +56,33 @@ const loginService = async(username,password)=> {
         
       }).then((res) => res.json());
 }
+const loginServiceFB = async(access_token,userid)=> {
+
+  let opts={
+      'access_token': access_token,
+      'userid': userid
+    };
+  
+  return await fetch(config.serverConnectURL+config.api.loginFB, {
+      method: 'post',
+      headers,
+      body: JSON.stringify(opts)
+      
+    }).then((res) => res.json());
+}
+const loginServiceGH = async(access_token)=> {
+  
+  let opts={
+      'access_code': access_token
+    };
+  
+  return await fetch(config.serverConnectURL+config.api.loginGH, {
+      method: 'post',
+      headers,
+      body: JSON.stringify(opts)
+      
+    }).then((res) => res.json());
+}
 const deleteReq =  async(reqId) => {
   return await fetch(config.serverConnectURL+config.api.requestClt, {
     method: 'delete',
@@ -79,5 +106,7 @@ export {
     removeFromListService,
     loginService,
     deleteReq,
-    changeReqStatus
+    changeReqStatus,
+    loginServiceFB,
+    loginServiceGH
 }
