@@ -14,6 +14,25 @@ Also, a supplier can edit his product details.
  * SASS
  * Webpack
 
+# User View  
+
+### Login on the home page  
+![login](https://github.com/rghvndr99/repo-code-snippet/blob/master/supply%20chain/LoginPage.png)  
+
+### github login    
+![githublogin](https://github.com/rghvndr99/repo-code-snippet/blob/master/supply%20chain/githubLogin.png)
+
+### After login 
+![](https://github.com/rghvndr99/repo-code-snippet/blob/master/supply%20chain/Afterlogin.png) 
+
+### Request section  
+![Requests](https://github.com/rghvndr99/repo-code-snippet/blob/master/supply%20chain/request_Panel.png)
+
+### update product  
+![product update panel](https://github.com/rghvndr99/repo-code-snippet/blob/master/supply%20chain/update_product.png)
+
+
+
 # Code explanation
 ### project structure
 ![project structure](https://github.com/rghvndr99/repo-code-snippet/blob/master/supply%20chain/project%20structure.png)
@@ -21,7 +40,7 @@ Also, a supplier can edit his product details.
 ### Configuration
 ![configuration](https://github.com/rghvndr99/repo-code-snippet/blob/master/supply%20chain/config.png)
 
-### backend  
+### Backend  
 
 1. configuration  and MongoDB connectivity  
 ![connectivity](https://github.com/rghvndr99/repo-code-snippet/blob/master/supply%20chain/mongoConnection.png)  
