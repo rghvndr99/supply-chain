@@ -1,7 +1,7 @@
 # Description 
-This application is used to show a relation between a retailer and a supplier. So as a process, a retailer can log in into the portal which will list down all the products from a different supplier. Now he can make a request for the supplier of the required product.
+This application is used to show a relationship between a retailer and a supplier. As a process, a retailer can logged in the portal which will list down all the products from a different supplier. Now he can make a request for the supplier of the required product.
 
-Now when the supplier logs in in his account, he can see the requests from different venders. He can approve or delete the request. 
+Now supplier can view this request after login into his account, he can see the requests from different venders and has an ability to approve or delete the request. 
 
 Also, a supplier can edit his product details.
 
