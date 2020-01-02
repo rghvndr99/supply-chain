@@ -72,6 +72,20 @@ Also, a supplier can edit his product details.
    ![](https://github.com/rghvndr99/repo-code-snippet/blob/master/supply%20chain/login%20service%20for%20facebook.png) 
 
 
+# Security   
+### database security  
+few policies for database security.  
+1. One admin policy
+2. Use TLS/SSL
+3. LDAP protocol
+4. Role base autherization and authentication
+
+### API security 
+1. express rate limit 
+2. limit body payload
+3. use helmet library
+4. use mongo-sanitize and Xss-clean library
+5. two-way authentication and bcrypt 
    
   
 
