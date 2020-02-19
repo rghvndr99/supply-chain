@@ -1,20 +1,19 @@
-import React from 'react';
-import GitHubLogin from 'react-github-login';
-import FacebookLogin from 'react-facebook-login';
-import userlogo from '../image/user_logo.png';
-
+import React from "react";
+import GitHubLogin from "react-github-login";
+import FacebookLogin from "react-facebook-login";
+import userlogo from "../image/user_logo.png";
 
 class LoginDrawer extends React.Component {
-	constructor (props) {
+  constructor(props) {
     super(props);
     this.loginCtrl = this.loginCtrl.bind(this);
-  }  
-  loginCtrl = () => {
-    this.props.login(this.username.value,this.password.value);
   }
+  loginCtrl = () => {
+    this.props.login(this.username.value, this.password.value);
+  };
 
-	render() {
-		return (
+  render() {
+    return (
       <div className="login-drawer">
         <div className="img-container">
           <img src={userlogo} alt="Avatar" className="avatar" />
@@ -56,15 +55,17 @@ class LoginDrawer extends React.Component {
           />
           <GitHubLogin
             clientId="YYYYY"
-            redirectUri=''
-            className= "btn btn-login"
-            onSuccess={(res)=>this.props.githubCallBackhandler(res)}
-            onFailure={(error) => {console.log(error)}}
+            redirectUri=""
+            className="btn btn-login"
+            onSuccess={res => this.props.githubCallBackhandler(res)}
+            onFailure={error => {
+              console.log(error);
+            }}
           />
         </div>
       </div>
     );
-	}
+  }
 }
 
 export default LoginDrawer;

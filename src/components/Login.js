@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import LoginDrawer from "./LoginDrawer.js";
 import UserDetail from "./UserDetail.js";
 import Image from "./Image.js";
-import userlogo from '../image/user-small.png';
+import userlogo from "../image/user-small.png";
 
 const Login = props => {
   let userInfo = JSON.parse(sessionStorage.getItem("userInfo")) || {};
@@ -16,8 +16,8 @@ const Login = props => {
     showRequestToggle,
     productList,
     productPortalListing,
-	facebookCallBackhandler,
-	githubCallBackhandler
+    facebookCallBackhandler,
+    githubCallBackhandler
   } = props;
   return (
     <React.Fragment>
@@ -30,8 +30,8 @@ const Login = props => {
       {showLoginDrawer && !userInfo && (
         <LoginDrawer
           login={login}
-		  facebookCallBackhandler={facebookCallBackhandler}
-		  githubCallBackhandler={githubCallBackhandler}
+          facebookCallBackhandler={facebookCallBackhandler}
+          githubCallBackhandler={githubCallBackhandler}
         />
       )}
       {showLoginDrawer && userInfo && (
